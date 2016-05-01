@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="java-blog-aggregator:Web exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/java_blog_aggregator_Web_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="java-blog-aggregator/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="java-blog-aggregator" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
