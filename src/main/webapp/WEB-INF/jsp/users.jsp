@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%@ include file="../layout/taglib.jsp" %>
 
 <table class="table table-bordered table-hover table-striped">
     <thead>
@@ -11,6 +12,7 @@
         <c:forEach items="${users}" var="user">
             <tr>
                 <td>
+                    <a href="<spring:url value="/users/${user.id}.html" />">
                     ${user.name}
                 </td>
             </tr>
