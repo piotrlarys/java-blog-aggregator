@@ -34,4 +34,6 @@
 
     <jpa:repositories base-package="pl.larys.jba.repository" />
 
+    <import resource="security.xml" />
+
 </beans>
