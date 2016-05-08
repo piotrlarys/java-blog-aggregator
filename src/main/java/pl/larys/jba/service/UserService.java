@@ -3,15 +3,19 @@ package pl.larys.jba.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.larys.jba.entity.Blog;
 import pl.larys.jba.entity.Item;
+import pl.larys.jba.entity.Role;
 import pl.larys.jba.entity.User;
 import pl.larys.jba.repository.BlogRepository;
 import pl.larys.jba.repository.ItemRepository;
+import pl.larys.jba.repository.RoleRepository;
 import pl.larys.jba.repository.UserRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,6 +28,10 @@ public class UserService {
     @SuppressWarnings("SpringJavaAutowiringInspection")
     @Autowired
     private UserRepository userRepository;
+
+    @SuppressWarnings("SpringJavaAutowiringInspection")
+    @Autowired
+    private RoleRepository roleRepository;
 
     @SuppressWarnings("SpringJavaAutowiringInspection")
     @Autowired
@@ -54,6 +62,15 @@ public class UserService {
     }
 
     public void save(User user) {
+        user.setEnabled(true);
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        user.setPassword(encoder.encode(user.getPassword()));
+
+        List<Role> roles = new ArrayList<Role>();
+        roles.add(roleRepository.findByName("ROLE_USER"));
+
+        user.setRoles(roles);
+
         userRepository.save(user);
     }
 }
