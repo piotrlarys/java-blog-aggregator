@@ -13,6 +13,8 @@ import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.transform.Source;
+import javax.xml.transform.stream.StreamSource;
+import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -26,7 +28,15 @@ import java.util.Locale;
 @Service
 public class RssService {
 
-    public List<Item> getItems(Source source) throws RssException {
+    public List<Item> getItems(File file) throws RssException {
+        return getItems(new StreamSource(file));
+    }
+
+    public List<Item> getItems(String url) throws RssException {
+        return getItems(new StreamSource(url));
+    }
+
+    private List<Item> getItems(Source source) throws RssException {
 
         ArrayList<Item> list = new ArrayList<>();
 
@@ -44,7 +54,7 @@ public class RssService {
                     item.setTitle(rssItem.getTitle());
                     item.setDescription(rssItem.getDescription());
                     item.setLink(rssItem.getLink());
-                    Date pubDate = new SimpleDateFormat("EEE, dd, MMM, yyyy, HH:mm:ss Z", Locale.ENGLISH).parse(rssItem.getPubDate());
+                    Date pubDate = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss Z", Locale.ENGLISH).parse(rssItem.getPubDate());
                     item.setPublishedDate(pubDate);
                     list.add(item);
                 }
