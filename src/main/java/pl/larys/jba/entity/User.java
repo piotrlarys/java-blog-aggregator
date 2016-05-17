@@ -11,6 +11,7 @@ import java.util.List;
  * Created by piotr on 01.05.16.
  */
 @Entity
+@Table(name = "app_user")
 public class User {
 
     @Id

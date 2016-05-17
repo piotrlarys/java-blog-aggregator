@@ -20,6 +20,6 @@ public class ItemService {
     private ItemRepository itemRepository;
 
     public List<Item> geItems() {
-        return itemRepository.findAll(new PageRequest(0, 20, Sort.Direction.DESC, "publishedDate")).getContent();
+        return itemRepository.findAll(new PageRequest(0, 20, Sort.Direction.ASC, "publishedDate")).getContent();
     }
 }
