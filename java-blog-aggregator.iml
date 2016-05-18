@@ -25,7 +25,7 @@
     </facet>
     <facet type="Spring" name="Spring">
       <configuration>
-        <fileset id="fileset" name="Spring Application Context" removed="false" profiles="prod">
+        <fileset id="fileset" name="Spring Application Context" removed="false">
           <file>file://$MODULE_DIR$/src/main/webapp/WEB-INF/dispatcher-servlet.xml</file>
           <file>file://$MODULE_DIR$/src/main/webapp/WEB-INF/applicationContext.xml</file>
           <file>file://$MODULE_DIR$/src/main/webapp/WEB-INF/security.xml</file>
